@@ -143,7 +143,7 @@
             }, 6500);
         }
 
-        document.getElementById('bouncingImage').src = 'emoji.webp';
+        document.getElementById('bouncingImage').src = 'emoji.webp.webp';
         document.getElementById('audio').src = 'champagne.mp3.mp3';
     </script>
 </body>
