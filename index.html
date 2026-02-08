@@ -1,150 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bouncing Image</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bouncing Image</title>
 
-        body {
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
+    body {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
 
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #333;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
 
-        h1.show {
-            opacity: 1;
-        }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #333;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-        button {
-            padding: 12px 30px;
-            font-size: 1.1em;
-            background-color: #ff6b9d;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            position: relative;
-            z-index: 10;
-        }
+    h1.show {
+      opacity: 1;
+    }
 
-        button:hover {
-            background-color: #ff5a8c;
-        }
+    button {
+      padding: 12px 30px;
+      font-size: 1.1em;
+      background-color: #ff6b9d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
 
-        button:active {
-            transform: scale(0.98);
-        }
+    button:hover {
+      background-color: #ff5a8c;
+    }
 
-        .animation-container {
-            position: fixed;
-            top: 50%;
-            left: -200px;
-            transform: translateY(-50%);
-            z-index: 5;
-        }
+    .animation-container {
+      position: fixed;
+      top: 50%;
+      left: -200px;
+      transform: translateY(-50%);
+      z-index: 5;
+    }
 
-        .animation-container img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-        }
+    .animation-container img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
 
-        @keyframes slideToRight {
-            0% {
-                left: -200px;
-            }
-            100% {
-                left: calc(100vw);
-            }
-        }
+    @keyframes slideToRight {
+      0% {
+        left: -200px;
+      }
+      100% {
+        left: calc(100vw - 150px);
+      }
+    }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            25% {
-                transform: translateY(-60px);
-            }
-            50% {
-                transform: translateY(0);
-            }
-            75% {
-                transform: translateY(-30px);
-            }
-        }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(-60px);
+      }
+      50% {
+        transform: translateY(0);
+      }
+      75% {
+        transform: translateY(-30px);
+      }
+    }
 
-        .bounce-animation {
-            animation: slideToRight 6s linear forwards, bounce 0.6s ease-in-out infinite;
-        }
+    .bounce-animation {
+      animation:
+        slideToRight 6s linear forwards,
+        bounce 0.6s ease-in-out infinite;
+    }
 
-        audio {
-            display: none;
-        }
-    </style>
+    audio {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1 id="text">you're cute fr</h1>
-        <button onclick="startBouncing()">Click Me!</button>
-    </div>
+  <div class="container">
+    <h1 id="text">you're cute fr</h1>
+    <button onclick="startBouncing()">Click Me!</button>
+  </div>
 
-    <div class="animation-container" id="animationContainer">
-        <img id="bouncingImage" src="" alt="Bouncing Image">
-    </div>
+  <div class="animation-container" id="animationContainer">
+    <img id="bouncingImage" alt="Bouncing Image" />
+  </div>
 
-    <audio id="audio"></audio>
+  <audio id="audio"></audio>
 
-    <script>
-        function startBouncing() {
-            const text = document.getElementById('text');
-            const audio = document.getElementById('audio');
-            const animationContainer = document.getElementById('animationContainer');
+  <script>
+    // ensure DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('bouncingImage').src = './emoji.webp.webp';
+      document.getElementById('audio').src = './champagne.mp3.mp3';
+    });
 
-            text.classList.add('show');
+    function startBouncing() {
+      const text = document.getElementById('text');
+      const audio = document.getElementById('audio');
+      const animationContainer = document.getElementById('animationContainer');
 
-            if (audio.src) {
-                audio.play().catch(err => console.log('Audio play failed:', err));
-            }
+      text.classList.add('show');
 
-            animationContainer.classList.remove('bounce-animation');
-            void animationContainer.offsetWidth; 
-            animationContainer.classList.add('bounce-animation');
+      audio.play().catch(() => {});
 
-            
-            setTimeout(() => {
-                animationContainer.classList.remove('bounce-animation');
-            }, 6500);
-        }
+      animationContainer.classList.remove('bounce-animation');
+      void animationContainer.offsetWidth; // restart animation
+      animationContainer.classList.add('bounce-animation');
 
-        document.getElementById('bouncingImage').src = 'emoji.webp.webp';
-        document.getElementById('audio').src = 'champagne.mp3.mp3';
-    </script>
+      setTimeout(() => {
+        animationContainer.classList.remove('bounce-animation');
+      }, 6500);
+    }
+  </script>
 </body>
 </html>
+
